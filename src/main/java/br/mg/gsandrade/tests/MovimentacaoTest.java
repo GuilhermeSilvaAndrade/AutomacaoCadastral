@@ -46,7 +46,7 @@ public class MovimentacaoTest extends BaseTest {
 	public void validaMovimentacaoFutura() {
 		menuPage.acessarTelaMovimentacao();
 		movimentacaoPage.setTipoMovimentacaoReceita();
-		movimentacaoPage.setDataMovimentacao("31/05/2019");
+		movimentacaoPage.setDataMovimentacao("31/07/2019");
 		movimentacaoPage.setDataPagamento("30/05/2019");
 		movimentacaoPage.setDescricao("teste descrição");
 		movimentacaoPage.setInteressado("interessado teste");
