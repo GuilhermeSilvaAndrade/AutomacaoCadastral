@@ -1,37 +1,44 @@
 package br.mg.gsandrade.tests;
 
+import static br.mg.gsandrade.utils.DataUtils.obterDataFormatada;
+
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import br.mg.gsandrade.core.BaseTest;
 import br.mg.gsandrade.pages.MenuPage;
 import br.mg.gsandrade.pages.MovimentacaoPage;
+import br.mg.gsandrade.utils.DataUtils;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MovimentacaoTest extends BaseTest {
 
 	private MenuPage menuPage = new MenuPage();
 	private MovimentacaoPage movimentacaoPage = new MovimentacaoPage();
 	
 	@Test
-	public void criarMovimentacao() {
+	public void test1_CriarMovimentacao() {
 		menuPage.acessarTelaMovimentacao();
 		movimentacaoPage.setTipoMovimentacaoReceita();
-		movimentacaoPage.setDataMovimentacao("30/05/2019");
-		movimentacaoPage.setDataPagamento("30/05/2019");
+		movimentacaoPage.setDataMovimentacao(obterDataFormatada(new Date()));
+		movimentacaoPage.setDataPagamento(obterDataFormatada(new Date()));
 		movimentacaoPage.setDescricao("teste descrição");
 		movimentacaoPage.setInteressado("interessado teste");
-		movimentacaoPage.setValor("200");
+		movimentacaoPage.setValor("1000");
 		movimentacaoPage.setConta("Conta alterada");
-		movimentacaoPage.setSituacaoPendente();
+		movimentacaoPage.setSituacaoPago();
 		movimentacaoPage.salvarMovimentacao();
 		Assert.assertEquals("Movimentação adicionada com sucesso!", movimentacaoPage.obtemMensagemSucesso());
 	}
 	
 	@Test
-	public void validaRegrasCampos() {
+	public void test2_ValidarRegrasCampos() {
 		menuPage.acessarTelaMovimentacao();
 		movimentacaoPage.salvarMovimentacao();
 		List<String> erros = movimentacaoPage.obtemErros();
@@ -43,16 +50,17 @@ public class MovimentacaoTest extends BaseTest {
 	}
 	
 	@Test
-	public void validaMovimentacaoFutura() {
+	public void test3_ValidarMovimentacaoFutura() {
 		menuPage.acessarTelaMovimentacao();
 		movimentacaoPage.setTipoMovimentacaoReceita();
-		movimentacaoPage.setDataMovimentacao("31/07/2019");
-		movimentacaoPage.setDataPagamento("30/05/2019");
+		Date dataFutura = DataUtils.obterDataComDiferencaDias(5);
+		movimentacaoPage.setDataMovimentacao(obterDataFormatada(dataFutura));
+		movimentacaoPage.setDataPagamento(obterDataFormatada(dataFutura));
 		movimentacaoPage.setDescricao("teste descrição");
 		movimentacaoPage.setInteressado("interessado teste");
-		movimentacaoPage.setValor("200");
+		movimentacaoPage.setValor("1000");
 		movimentacaoPage.setConta("Conta alterada");
-		movimentacaoPage.setSituacaoPendente();
+		movimentacaoPage.setSituacaoPago();
 		movimentacaoPage.salvarMovimentacao();
 		Assert.assertEquals("Data da Movimentação deve ser menor ou igual à data atual", 
 				movimentacaoPage.obtemMensagemErroDataFutura());
@@ -60,5 +68,5 @@ public class MovimentacaoTest extends BaseTest {
 //		Assert.assertTrue(erros.contains("Data da Movimentação deve ser menor ou igual à data atual"));
 //		Assert.assertEquals(1, erros.size());
 	}
-	
+		
 }

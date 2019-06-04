@@ -2,7 +2,7 @@ package br.mg.gsandrade.pages;
 import org.openqa.selenium.By;
 import br.mg.gsandrade.core.BasePage;
 
-public class ContasPage extends BasePage {
+public class ContaPage extends BasePage {
 
 	public void setNome(String nome) {
 		escreve("nome", nome);
@@ -22,8 +22,12 @@ public class ContasPage extends BasePage {
 
 	public void clicarALterarConta(String string) {
 		obterCelula("Conta", string, "Ações", "tabelaContas")
-		.findElement(By.xpath(".//span[@class='glyphicon glyphicon-edit']")).click();
-		
+		.findElement(By.xpath(".//span[@class='glyphicon glyphicon-edit']")).click();	
+	}
+	
+	public void clicarRemoverConta(String string) {
+		obterCelula("Conta", string, "Ações", "tabelaContas")
+		.findElement(By.xpath(".//span[@class='glyphicon glyphicon-remove-circle']")).click();	
 	}
 	
 }

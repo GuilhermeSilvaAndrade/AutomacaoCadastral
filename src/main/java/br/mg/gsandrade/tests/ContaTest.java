@@ -1,39 +1,51 @@
 package br.mg.gsandrade.tests;
 
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
+
 import br.mg.gsandrade.core.BaseTest;
-import br.mg.gsandrade.pages.ContasPage;
+import br.mg.gsandrade.pages.ContaPage;
 import br.mg.gsandrade.pages.MenuPage;
 
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ContaTest extends BaseTest {
 
 	private MenuPage menuPage = new MenuPage();
-	private ContasPage contasPage = new ContasPage();
+	private ContaPage contaPage = new ContaPage();
 	
 	@Test
-	public void testInserirConta() {
+	public void test1_InserirConta() {
 		menuPage.acessarTelaInserirConta();
-		contasPage.setNome("Conta do teste");
-		contasPage.salvarNome();
-		Assert.assertEquals("Conta adicionada com sucesso!", contasPage.obtemMensagemSucesso());
+		contaPage.setNome("Conta do teste");
+		contaPage.salvarNome();
+		Assert.assertEquals("Conta adicionada com sucesso!", contaPage.obtemMensagemSucesso());
 	}
 	
 	@Test
-	public void testAlterarConta() {
+	public void test2_AlterarConta() {
 		menuPage.acessarTelaListarConta();
-		contasPage.clicarALterarConta("Conta do teste");
-		contasPage.setNome("Conta alterada");
-		contasPage.salvarNome();
-		Assert.assertEquals("Conta alterada com sucesso!", contasPage.obtemMensagemSucesso());
+		contaPage.clicarALterarConta("Conta do teste");
+		contaPage.setNome("Conta alterada");
+		contaPage.salvarNome();
+		Assert.assertEquals("Conta alterada com sucesso!", contaPage.obtemMensagemSucesso());
 	}
 	
 	@Test
-	public void testInserirContaExistente() {
+	public void test3_InserirContaExistente() {
 		menuPage.acessarTelaInserirConta();
-		contasPage.setNome("Conta alterada");
-		contasPage.salvarNome();
-		Assert.assertEquals("Já existe uma conta com esse nome!", contasPage.obtemMensagemErro());
+		contaPage.setNome("Conta alterada");
+		contaPage.salvarNome();
+		Assert.assertEquals("Já existe uma conta com esse nome!", contaPage.obtemMensagemErro());
 	}
+	
+//Classe criada para esse metodo	
+//	@Test
+//	public void testRemoverContaComMovimentacao() {
+//		menuPage.acessarTelaListarConta();
+//		contaPage.clicarRemoverConta("Conta existente");
+//		Assert.assertEquals("Conta em uso na movimentações", contaPage.obtemMensagemErro());
+//	}
+		
 }
