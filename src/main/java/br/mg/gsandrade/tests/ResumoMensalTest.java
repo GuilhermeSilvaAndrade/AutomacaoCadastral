@@ -1,6 +1,5 @@
 package br.mg.gsandrade.tests;
 
-
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
@@ -37,4 +36,18 @@ public class ResumoMensalTest extends BaseTest {
 		menuPage.acessarTelaResumoMensal();
 		Assert.assertEquals("Seu Barriga - Extrato", DriverFactory.getDriver().getTitle());
 	}
+	
+	@Test
+	public void test3_ValidaTabelaVazia() {
+		menuPage.acessarTelaResumoMensal();
+		if(resumoMensalPage.validaTabelaVazia()) {
+			Assert.assertTrue(resumoMensalPage.validaTabelaVazia());
+			System.out.println("A tabela possui registros");
+		}
+		else {
+			Assert.assertFalse(resumoMensalPage.validaTabelaVazia());
+			System.out.println("A tabela nao possui registros");
+		}
+	}
+	
 }

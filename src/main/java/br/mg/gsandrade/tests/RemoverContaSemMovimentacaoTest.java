@@ -8,15 +8,15 @@ import br.mg.gsandrade.core.Propriedades;
 import br.mg.gsandrade.pages.ContaPage;
 import br.mg.gsandrade.pages.MenuPage;
 
-public class RemoverContaComMovimentacaoTest extends BaseTest{
+public class RemoverContaSemMovimentacaoTest extends BaseTest {
 
 	private MenuPage menuPage = new MenuPage();
 	private ContaPage contaPage = new ContaPage();
 	
 	@Test
-	public void testRemoverContaComMovimentacao() {
+	public void testRemoverContaSemMovimentacao() {
 		menuPage.acessarTelaListarConta();
 		contaPage.clicarRemoverConta(Propriedades.NOME_CONTA_ALTERADA);
-		Assert.assertEquals("Conta em uso na movimentações", contaPage.obtemMensagemErro());
+		Assert.assertEquals("Conta removida com sucesso!", contaPage.obtemMensagemSucesso());
 	}
 }

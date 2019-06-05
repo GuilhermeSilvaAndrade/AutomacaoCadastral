@@ -1,5 +1,7 @@
 package br.mg.gsandrade.pages;
 
+import static br.mg.gsandrade.core.DriverFactory.getDriver;
+
 import org.openqa.selenium.By;
 
 import br.mg.gsandrade.core.BasePage;
@@ -19,4 +21,13 @@ public class ResumoMensalPage extends BasePage {
 		return obtemTexto(By.xpath("//div[@class='alert alert-success']"));
 	}
 
+	public boolean validaTabelaVazia() {
+		try {
+			getDriver().findElement(By.xpath("//*[@id='tabelaExtrato']/tbody/tr"));
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+
+	}
 }
