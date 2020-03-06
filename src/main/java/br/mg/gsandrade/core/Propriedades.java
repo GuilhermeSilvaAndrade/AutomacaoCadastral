@@ -2,11 +2,13 @@ package br.mg.gsandrade.core;
 
 public class Propriedades {
 
-	public static boolean FECHAR_BROWSER = false;
+	public static boolean FECHAR_BROWSER = true;
 	
-	public static Browsers browser = Browsers.FIREFOX;
+	public static Browsers BROWSER = Browsers.FIREFOX;
 	
-	public static String NOME_CONTA_ALTERADA = "Conta alterada "+System.nanoTime();
+	public static TipoExecucao TIPO_EXECUCAO = TipoExecucao.LOCAL;
+	
+//	public static String NOME_CONTA_ALTERADA = "Conta alterada "+System.nanoTime();
 	
 	public enum Browsers {
 		CHROME,
@@ -14,4 +16,9 @@ public class Propriedades {
 		IE
 	}
 	
+	public enum TipoExecucao {
+		LOCAL,
+		GRID,
+		NUVEM
+	}
 }

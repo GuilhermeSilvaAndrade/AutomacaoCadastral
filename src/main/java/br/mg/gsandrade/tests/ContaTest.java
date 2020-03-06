@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import br.mg.gsandrade.core.BaseTest;
-import br.mg.gsandrade.core.Propriedades;
 import br.mg.gsandrade.pages.ContaPage;
 import br.mg.gsandrade.pages.MenuPage;
 
@@ -27,8 +26,9 @@ public class ContaTest extends BaseTest {
 	@Test
 	public void test2_AlterarConta() {
 		menuPage.acessarTelaListarConta();
-		contaPage.clicarALterarConta("Conta do teste");
-		contaPage.setNome(Propriedades.NOME_CONTA_ALTERADA);
+		contaPage.clicarALterarConta("Conta para alterar");
+		contaPage.setNome("Conta alterada");
+//		contaPage.setNome(Propriedades.NOME_CONTA_ALTERADA);
 		contaPage.salvarNome();
 		Assert.assertEquals("Conta alterada com sucesso!", contaPage.obtemMensagemSucesso());
 	}
@@ -36,7 +36,8 @@ public class ContaTest extends BaseTest {
 	@Test
 	public void test3_InserirContaExistente() {
 		menuPage.acessarTelaInserirConta();
-		contaPage.setNome(Propriedades.NOME_CONTA_ALTERADA);
+//		contaPage.setNome(Propriedades.NOME_CONTA_ALTERADA);
+		contaPage.setNome("Conta mesmo nome");
 		contaPage.salvarNome();
 		Assert.assertEquals("Já existe uma conta com esse nome!", contaPage.obtemMensagemErro());
 	}

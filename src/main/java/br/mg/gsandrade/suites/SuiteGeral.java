@@ -1,6 +1,5 @@
 package br.mg.gsandrade.suites;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -29,15 +28,12 @@ public class SuiteGeral {
 	private static LoginPage loginPage = new LoginPage();
 	
 	@BeforeClass
-	public static void inicializa() {
+	public static void reset() {
 		loginPage.acessarTelaInicial();
 		loginPage.setEmail("conta10@conta10");
 		loginPage.setSenha("123456");
 		loginPage.entrar();
-	}
-	
-	@AfterClass
-	public static void finaliza() {
+		loginPage.resetar();
 		DriverFactory.killDriver();
-	}		
+	}
 }

@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import br.mg.gsandrade.core.BaseTest;
-import br.mg.gsandrade.core.Propriedades;
 import br.mg.gsandrade.pages.ContaPage;
 import br.mg.gsandrade.pages.MenuPage;
 
@@ -16,7 +15,8 @@ public class RemoverContaSemMovimentacaoTest extends BaseTest {
 	@Test
 	public void testRemoverContaSemMovimentacao() {
 		menuPage.acessarTelaListarConta();
-		contaPage.clicarRemoverConta(Propriedades.NOME_CONTA_ALTERADA);
+//		contaPage.clicarRemoverConta(Propriedades.NOME_CONTA_ALTERADA);
+		contaPage.clicarRemoverConta("Conta do teste");
 		Assert.assertEquals("Conta removida com sucesso!", contaPage.obtemMensagemSucesso());
 	}
 }

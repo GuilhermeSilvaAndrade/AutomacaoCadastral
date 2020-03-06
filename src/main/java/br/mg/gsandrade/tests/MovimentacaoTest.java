@@ -12,7 +12,6 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import br.mg.gsandrade.core.BaseTest;
-import br.mg.gsandrade.core.Propriedades;
 import br.mg.gsandrade.pages.MenuPage;
 import br.mg.gsandrade.pages.MovimentacaoPage;
 import br.mg.gsandrade.utils.DataUtils;
@@ -32,7 +31,8 @@ public class MovimentacaoTest extends BaseTest {
 		movimentacaoPage.setDescricao("teste descrição");
 		movimentacaoPage.setInteressado("interessado teste");
 		movimentacaoPage.setValor("1000");
-		movimentacaoPage.setConta(Propriedades.NOME_CONTA_ALTERADA);
+//		movimentacaoPage.setConta(Propriedades.NOME_CONTA_ALTERADA);
+		movimentacaoPage.setConta("Conta para movimentacoes");
 		movimentacaoPage.setSituacaoPago();
 		movimentacaoPage.salvarMovimentacao();
 		Assert.assertEquals("Movimentação adicionada com sucesso!", movimentacaoPage.obtemMensagemSucesso());
@@ -60,7 +60,8 @@ public class MovimentacaoTest extends BaseTest {
 		movimentacaoPage.setDescricao("teste descrição");
 		movimentacaoPage.setInteressado("interessado teste");
 		movimentacaoPage.setValor("1000");
-		movimentacaoPage.setConta(Propriedades.NOME_CONTA_ALTERADA);
+//		movimentacaoPage.setConta(Propriedades.NOME_CONTA_ALTERADA);
+		movimentacaoPage.setConta("Conta para movimentacoes");
 		movimentacaoPage.setSituacaoPago();
 		movimentacaoPage.salvarMovimentacao();
 		Assert.assertEquals("Data da Movimentação deve ser menor ou igual à data atual", 
